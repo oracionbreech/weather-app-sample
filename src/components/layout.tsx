@@ -12,9 +12,7 @@ const Layout = () => {
     } = useAuth0();
 
     React.useEffect(() => {
-        console.log(isAuthenticated, isLoading);
         if (!isAuthenticated && !isLoading) {
-            console.log('not logged in');
             navigate('/login')
         }
     }, [isAuthenticated, isLoading])
@@ -29,7 +27,6 @@ const Layout = () => {
             <CircularProgress />
         </Container>
     }
-
 
     return (
         <>
