@@ -113,7 +113,7 @@ const Weather = () => {
       </Typography>}
       {!error && weather && WeatherTable(weather)}
       {!error && weather && <Box justifyContent={'end'} display={'flex'}>
-        <Button>Back</Button>
+        <Button onClick={() =>  navigate('/')}>Back</Button>
       </Box>}
     </Container>
   )
