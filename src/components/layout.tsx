@@ -15,14 +15,15 @@ const Layout = () => {
         if (!isAuthenticated && !isLoading) {
             navigate('/login')
         }
-    }, [isAuthenticated, isLoading])
+    }, [isAuthenticated, isLoading, navigate])
 
 
     if (isLoading) {
         return <Container sx={{
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            height: '100vh'
         }}>
             <CircularProgress />
         </Container>

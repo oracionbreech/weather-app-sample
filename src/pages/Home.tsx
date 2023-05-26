@@ -2,7 +2,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Search } from '@mui/icons-material';
 import { Box, Button, Container, FormControl, Input, InputAdornment, Typography } from '@mui/material'
 import React from 'react'
-import { getWeatherByCity } from '../services/weather';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
