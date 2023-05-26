@@ -1,12 +1,12 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 
-interface IUserReducer {
+export interface IUserState {
     isLoggedIn: boolean,
     authToken: string | null
 }
 
-const initialState: IUserReducer = {
+const initialState: IUserState = {
     isLoggedIn: false,
     authToken: null
 }
@@ -19,7 +19,7 @@ const userSlice = createSlice({
             state.authToken = action.payload
             state.isLoggedIn = true;
         },
-        logoutUser: (state, action) => {
+        logoutUser: (state) => {
             state.isLoggedIn = false;
             state.authToken = null;
         }
