@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -14,6 +15,12 @@ const Login = () => {
             justifyContent: 'center',
             flexGrow: 1
         }}>
+
+            <Helmet>
+                <title>
+                    Weather App | Login
+                </title>
+            </Helmet>
             <Box width={'50%'} marginTop={'10%'} paddingRight={'10rem'}>
                 <Typography width={'100%'}>
                     Welcome to the weather forecast web application. Please login with your Github user to use the application and view the weather in your city

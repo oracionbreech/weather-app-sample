@@ -3,6 +3,7 @@ import { Search } from '@mui/icons-material';
 import { Box, Button, Container, FormControl, Input, InputAdornment, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import {Helmet} from 'react-helmet'
 
 const Home = () => {
     const { user } = useAuth0()
@@ -16,6 +17,11 @@ const Home = () => {
 
     return (
         <Container>
+            <Helmet>
+                <title>
+                    Weather App | Home
+                </title>
+            </Helmet>
             <Box justifyContent={'center'}>
                 <Typography textAlign={'center'} marginTop={'5%'}>
                     {user?.nickname}

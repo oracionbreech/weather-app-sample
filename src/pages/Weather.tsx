@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getWeatherByCity } from '../services/weather';
 import { weatherConditions } from '../constants/weather-conditions';
 import { useMediaQuery } from 'react-responsive'
+import { Helmet } from 'react-helmet';
 
 const Weather = () => {
 
@@ -105,6 +106,11 @@ const Weather = () => {
     <Container sx={{
       flexGrow: 1
     }}>
+      <Helmet>
+        <title>
+          Weather App | Weather
+        </title>
+      </Helmet>
       {error && <Typography textAlign={'center'} marginTop={'10%'}>
         {error}
       </Typography>}
