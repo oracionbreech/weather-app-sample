@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getWeatherByCity } from '../services/weather';
@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 
 const Weather = () => {
   const [params] = useSearchParams();
+  const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate();
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
   const cityParam = params.get('city');
@@ -15,6 +16,7 @@ const Weather = () => {
   const [weather, setWeather] = React.useState(null)
 
   const getWeather = async (city: string) => {
+    setLoading(true);
     try {
       const weatherData = await getWeatherByCity(city)
 
@@ -28,6 +30,8 @@ const Weather = () => {
 
     } catch (error: any) {
       setError('Error occured getting weather data')
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -36,7 +40,7 @@ const Weather = () => {
       getWeather(cityParam)
     } else {
       navigate('/')
-    } 
+    }
   }, [cityParam])
 
 
@@ -113,8 +117,17 @@ const Weather = () => {
       </Typography>}
       {!error && weather && WeatherTable(weather)}
       {!error && weather && <Box justifyContent={'end'} display={'flex'}>
-        <Button onClick={() =>  navigate('/')}>Back</Button>
+        <Button onClick={() => navigate('/')}>Back</Button>
       </Box>}
+
+      {loading && <Container sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        <CircularProgress />
+      </Container>}
     </Container>
   )
 }
