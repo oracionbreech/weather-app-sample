@@ -1,27 +1,22 @@
 import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getWeatherByCity } from '../services/weather';
 import { weatherConditions } from '../constants/weather-conditions';
 import { useMediaQuery } from 'react-responsive'
 import { Helmet } from 'react-helmet';
 
 const Weather = () => {
-
   const [params] = useSearchParams();
-
+  const navigate = useNavigate();
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-  console.log(isTabletOrMobile);
-
-
   const cityParam = params.get('city');
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState<string | null>(null);
   const [weather, setWeather] = React.useState(null)
 
   const getWeather = async (city: string) => {
     try {
       const weatherData = await getWeatherByCity(city)
-      console.log('data', weatherData);
 
       if (weatherData.error) {
         setError(weatherData.error.message || 'Error occurred fetching weather data')
@@ -32,14 +27,16 @@ const Weather = () => {
       }
 
     } catch (error: any) {
-      console.log('error', error.message);
+      setError('Error occured getting weather data')
     }
   }
 
   React.useEffect(() => {
-    if (cityParam) {
+    if (cityParam && cityParam.length > 0) {
       getWeather(cityParam)
-    }
+    } else {
+      navigate('/')
+    } 
   }, [cityParam])
 
 
