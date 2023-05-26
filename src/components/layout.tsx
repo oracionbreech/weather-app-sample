@@ -39,7 +39,7 @@ const Layout = () => {
                         <Typography variant='h6' component={'div'} width={'auto'} sx={{ marginLeft: '1rem', flexGrow: '1' }}>
                             Weather Forecast
                         </Typography>
-                        {isAuthenticated ? <Button color="error" onClick={() =>  logout()}>Logout</Button> : <></>}
+                        {isAuthenticated ? <Button color="inherit" onClick={() =>  logout()}>Logout</Button> : <></>}
                     </Toolbar>
                 </AppBar>
             </Box>
