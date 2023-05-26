@@ -8,11 +8,14 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import Home from './pages/Home';
 import Weather from './pages/Weather';
 
+const { REACT_APP_AUTH0_DOMAIN,
+  REACT_APP_AUTH0_CLIENT_ID } = process.env
+
 function App() {
   return (
     <Auth0Provider
-      domain="dev-0pdysdidgdzv05qo.us.auth0.com"
-      clientId="ccxyhETdI9GmMSbiXvLHwyi5u5c9hW2F"
+      domain={String(REACT_APP_AUTH0_DOMAIN)}
+      clientId={String(REACT_APP_AUTH0_CLIENT_ID)}
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
